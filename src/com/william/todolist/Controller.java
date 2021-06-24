@@ -60,13 +60,15 @@ public class Controller {
             }
         });
 
-        todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+        todoListView.setItems(TodoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
     }
     public void showNewItemDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
+        dialog.setTitle("Add New Todo Item");
+        dialog.setHeaderText("Use this dialog to create the new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("todoitemDialog.fxml"));
 
@@ -84,11 +86,8 @@ public class Controller {
         if(result.isPresent() && result.get() == ButtonType.OK){
             DialogController controller = fxmlLoader.getController();
             TodoItem newItem = controller.processResults();
-            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
+//            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
             todoListView.getSelectionModel().select(newItem);
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel");
         }
     }
 
