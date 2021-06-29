@@ -24,7 +24,6 @@
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit"/>
                 </items>
-
             </Menu>
         </MenuBar>
     </top>
